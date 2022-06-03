@@ -37,7 +37,7 @@ app.use(
 
 app.use(express.json())
 
-app.use('/quote', quotesRouter)
-app.use('/info', infoRouter)
+app.use('/v1/quote', quotesRouter)
+app.use('/v1/info', infoRouter)
 app.use(errorHandler)
 app.use(notFoundHandler)
