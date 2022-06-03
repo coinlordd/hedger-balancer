@@ -1,4 +1,4 @@
-import { HEDGER_ADDRESSES, HEDGER_URLS } from '../config'
+import { HEDGER_ADDRESSES, HEDGER_URLS } from '../../config'
 
 export function isValidHedger(hedger_id: string): boolean {
   return Object.values(HEDGER_ADDRESSES).includes(hedger_id as unknown as HEDGER_ADDRESSES)

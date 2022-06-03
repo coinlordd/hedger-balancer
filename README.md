@@ -14,8 +14,14 @@ Run `yarn dev` for a hot reload server on port 8080
 
 ### Examples
 
-Get a single quote:
-http://localhost:8080/quote?instrument_id=EUR&hedger_id=hf_eth_address&batch=false
+Get a list of hedgers to retrieve hedger_id:
+http://localhost:8080/info/hedgers
 
-Get quotes for all available markets:
-http://localhost:8080/quote?instrument_id=EUR&hedger_id=hf_eth_address&batch=true
+Get a list of markets for specific hedger_id:
+http://localhost:8080/info/markets?hedger_id=hf_eth_address
+
+Get a single quote for specific hedger_id:
+http://localhost:8080/quote?instrument_id=EUR&hedger_id=hf_eth_address
+
+Get quotes for all available markets for specific hedger_id:
+http://localhost:8080/quote?hedger_id=hf_eth_address&batch=true

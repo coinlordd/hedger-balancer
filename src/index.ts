@@ -4,7 +4,8 @@ import dotenv from 'dotenv'
 import helmet from 'helmet'
 import compression from 'compression'
 
-import { quotesRouter } from './quotes/router'
+import { quotesRouter } from './routes/quotes/router'
+import { infoRouter } from './routes/info/router'
 import { errorHandler } from './middleware/error'
 import { notFoundHandler } from './middleware/not-found'
 import { CORS_WHITELIST } from './config'
@@ -37,5 +38,6 @@ app.use(
 app.use(express.json())
 
 app.use('/quote', quotesRouter)
+app.use('/info', infoRouter)
 app.use(errorHandler)
 app.use(notFoundHandler)

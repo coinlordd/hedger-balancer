@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 
-import { Quote } from '../interface.ts'
+import { Quote } from '../../interface.ts'
 import * as QuotesController from './controllers'
 import { isValidHedger } from './helpers'
 
@@ -23,7 +23,7 @@ quotesRouter.get('/', async (req: Request, res: Response) => {
     let shouldBatch = batch === undefined || typeof batch !== 'string' ? false : batch
 
     if (shouldBatch) {
-      const quotes: Quote[] = await QuotesController.getQuotesBatched(instrument_id, hedger_id)
+      const quotes: Quote[] = await QuotesController.getQuotesBatched(hedger_id)
       return res.status(200).json({
         success: true,
         data: quotes,

@@ -1,4 +1,4 @@
-import { Quote } from '../interface.ts'
+import { Quote } from '../../interface.ts'
 import { getHedgerBaseURL } from './helpers'
 import { fetchQuote, fetchQuotesBatched } from './services'
 
@@ -12,10 +12,10 @@ export async function getQuote(instrument_id: string, hedger_id: string): Promis
   return await fetchQuote(instrument_id, baseURL)
 }
 
-export async function getQuotesBatched(instrument_id: string, hedger_id: string): Promise<Quote[]> {
+export async function getQuotesBatched(hedger_id: string): Promise<Quote[]> {
   const baseURL = getHedgerBaseURL(hedger_id)
   if (!baseURL) {
     throw new Error(`Unable to map hedger_id to a trusted URL: ${hedger_id}`)
   }
-  return await fetchQuotesBatched(instrument_id, baseURL)
+  return await fetchQuotesBatched(baseURL)
 }

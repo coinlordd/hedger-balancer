@@ -9,3 +9,13 @@ export const HEDGER_URLS: {
 } = {
   [HEDGER_ADDRESSES.HF]: 'https://hf-pipe.deus.finance',
 }
+
+export interface Hedger {
+  address: string
+  url: string
+}
+
+export const ALL_HEDGERS: Hedger[] = Object.entries(HEDGER_URLS).map(([address, url]) => ({
+  address,
+  url,
+}))

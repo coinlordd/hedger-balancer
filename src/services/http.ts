@@ -4,9 +4,7 @@ export async function makeHttpRequest(
   url: string,
   options: {
     [x: string]: string
-  } = {
-    cache: 'no-cache',
-  }
+  } = {}
 ) {
   try {
     const response = await axios(url, options)

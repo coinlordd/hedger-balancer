@@ -1,5 +1,5 @@
-import { Quote } from '../interface.ts'
-import { makeHttpRequest } from '../services/http'
+import { Quote } from '../../interface.ts'
+import { makeHttpRequest } from '../../services/http'
 
 export async function fetchQuote(instrument_id: string, baseURL: string): Promise<Quote | null> {
   try {
@@ -15,7 +15,7 @@ export async function fetchQuote(instrument_id: string, baseURL: string): Promis
   }
 }
 
-export async function fetchQuotesBatched(instrument_id: string, baseURL: string): Promise<Quote[]> {
+export async function fetchQuotesBatched(baseURL: string): Promise<Quote[]> {
   try {
     const query = 'modify_this_kareem!'
     const url = new URL(query, baseURL)
