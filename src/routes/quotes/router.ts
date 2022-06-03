@@ -10,17 +10,13 @@ quotesRouter.get('/', async (req: Request, res: Response) => {
   try {
     const { instrument_id, hedger_id, batch } = req.query
 
-    if (typeof instrument_id !== 'string') {
-      throw new Error(`Query param 'instrument_id' has to be of type string: ${instrument_id}`)
-    }
-
     if (typeof hedger_id !== 'string') {
       throw new Error(`Query param 'hedger_id' has to be of type string: ${hedger_id}`)
     } else if (!isValidHedger(hedger_id)) {
       throw new Error(`Query param 'hedger_id' is not a valid hedger: ${hedger_id}`)
     }
 
-    let shouldBatch = batch === undefined || typeof batch !== 'string' ? false : batch
+    let shouldBatch = batch === undefined || typeof batch !== 'string' ? false : JSON.parse(batch)
 
     if (shouldBatch) {
       const quotes: Quote[] = await QuotesController.getQuotesBatched(hedger_id)
@@ -29,6 +25,10 @@ quotesRouter.get('/', async (req: Request, res: Response) => {
         data: quotes,
       })
     } else {
+      if (typeof instrument_id !== 'string') {
+        throw new Error(`Query param 'instrument_id' has to be of type string: ${instrument_id}`)
+      }
+
       const quote: Quote | null = await QuotesController.getQuote(instrument_id, hedger_id)
       if (quote) {
         return res.status(200).json({
