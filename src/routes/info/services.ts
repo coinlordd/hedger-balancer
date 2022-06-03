@@ -12,15 +12,17 @@ export async function fetchMarkets(baseURL: string, hedger_id: string): Promise<
     return [
       {
         id: 'XAUUSD',
-        base: 'XAU',
-        quote: 'USD',
-        hedger: hedger_id,
+        base_currency: 'XAU',
+        quote_currency: 'USD',
+        is_open: true,
+        hedger_id,
       },
       {
         id: 'EURUSD',
-        base: 'EUR',
-        quote: 'USD',
-        hedger: hedger_id,
+        base_currency: 'EUR',
+        quote_currency: 'USD',
+        is_open: false,
+        hedger_id,
       },
     ] as Market[]
   } catch (err) {
