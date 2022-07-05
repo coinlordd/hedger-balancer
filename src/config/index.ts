@@ -1,21 +1,29 @@
 export const CORS_WHITELIST = ['http://localhost:3000']
 
-export enum HEDGER_ADDRESSES {
-  HF = 'hf_eth_address',
-}
-
-export const HEDGER_URLS: {
-  [hedger_address: string]: string
-} = {
-  [HEDGER_ADDRESSES.HF]: 'https://hf-pipe.deus.finance',
-}
-
 export interface Hedger {
-  address: string
-  url: string
+  id: string
+  eth_address: string
+  http_base_url: string
+  ws_base_url: string
+  description: string
+  markets_route: string
+  quotes_route: string
 }
 
-export const ALL_HEDGERS: Hedger[] = Object.entries(HEDGER_URLS).map(([address, url]) => ({
-  address,
-  url,
-}))
+export enum HedgerID {
+  DEUSFinance1 = 'deusfinance-1',
+}
+
+export const PORT = parseInt((process.env.PORT as string) || '8000', 10)
+
+export const ALL_HEDGERS: Hedger[] = [
+  {
+    id: 'deusfinance-1',
+    eth_address: '0x0',
+    http_base_url: process.env.HF_BASE_URL!,
+    ws_base_url: process.env.HF_WS_URL!,
+    description: 'DEUS Finance Hedger 1',
+    markets_route: '/v1/markets',
+    quotes_route: '/v1/quotes',
+  },
+]

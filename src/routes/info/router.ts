@@ -1,8 +1,6 @@
 import express, { Request, Response } from 'express'
 
 import { ALL_HEDGERS } from '../../config'
-import { isValidHedger } from '../quotes/helpers'
-
 import * as InfoController from './controllers'
 
 export const infoRouter = express.Router()
@@ -20,11 +18,14 @@ infoRouter.get('/markets', async (req: Request, res: Response) => {
 
     if (typeof hedger_id !== 'string') {
       throw new Error(`Query param 'hedger_id' has to be of type string: ${hedger_id}`)
-    } else if (!isValidHedger(hedger_id)) {
+    }
+
+    const hedger = ALL_HEDGERS.find((hedger) => hedger.id === hedger_id)
+    if (!hedger) {
       throw new Error(`Query param 'hedger_id' is not a valid hedger: ${hedger_id}`)
     }
 
-    const markets = await InfoController.getMarkets(hedger_id)
+    const markets = await InfoController.getMarkets(hedger)
     return res.status(200).json({
       success: true,
       data: markets,

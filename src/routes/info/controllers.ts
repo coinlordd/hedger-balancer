@@ -1,12 +1,15 @@
-import { Market } from '../../interface.ts'
-import { getHedgerBaseURL } from '../quotes/helpers'
+import { Hedger } from '../../config'
 import { fetchMarkets } from './services'
 
-// TODO: implement caching layer.
-export async function getMarkets(hedger_id: string): Promise<Market[]> {
-  const baseURL = getHedgerBaseURL(hedger_id)
-  if (!baseURL) {
-    throw new Error(`Unable to map hedger_id to a trusted URL: ${hedger_id}`)
+// TODO: add caching-layer
+export async function getMarkets(hedger: Hedger) {
+  try {
+    const result = await fetchMarkets(hedger)
+    return result.map((market) => ({
+      hedger_id: hedger.id,
+      ...market,
+    }))
+  } catch (err) {
+    throw err
   }
-  return await fetchMarkets(baseURL, hedger_id)
 }
