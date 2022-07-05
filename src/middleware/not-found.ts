@@ -7,4 +7,6 @@ export const notFoundHandler = (request: Request, response: Response, next: Next
     success: false,
     message: message,
   })
+
+  next()
 }

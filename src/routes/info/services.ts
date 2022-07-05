@@ -19,14 +19,10 @@ const MarketsResponse = z.object({
 type MarketsResponse = z.infer<typeof MarketsResponse>
 
 export async function fetchMarkets(hedger: Hedger): Promise<MarketsResponse['data']> {
-  try {
-    const { href } = new URL(hedger.markets_route, hedger.http_base_url)
-    const result = await makeHttpRequest(href)
+  const { href } = new URL(hedger.markets_route, hedger.http_base_url)
+  const result = await makeHttpRequest(href)
 
-    const validated = MarketsResponse.parse(result)
-    if (validated.success === false) throw new Error(validated.message ?? 'Invalid response')
-    return validated.data
-  } catch (err) {
-    throw err
-  }
+  const validated = MarketsResponse.parse(result)
+  if (validated.success === false) throw new Error(validated.message ?? 'Invalid response')
+  return validated.data
 }

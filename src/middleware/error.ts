@@ -8,4 +8,6 @@ export const errorHandler = (error: HttpException, request: Request, response: R
     success: false,
     message: error.message,
   })
+
+  next()
 }

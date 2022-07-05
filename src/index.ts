@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config() // eslint-disable-line @typescript-eslint/no-var-requires
 
 import startup from './services/startup'
 import { initializeServer } from './services/server'

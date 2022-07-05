@@ -8,7 +8,11 @@ export const infoRouter = express.Router()
 infoRouter.get('/hedgers', async (req: Request, res: Response) => {
   res.status(200).json({
     success: true,
-    data: ALL_HEDGERS,
+    data: ALL_HEDGERS.map((hedger) => ({
+      id: hedger.id,
+      eth_address: hedger.eth_address,
+      description: hedger.description,
+    })),
   })
 })
 

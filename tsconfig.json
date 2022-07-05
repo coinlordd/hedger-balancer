@@ -2,9 +2,6 @@
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",
-    "paths": {
-      "*": ["./node_modules/*"]
-    },
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "esModuleInterop": true,
