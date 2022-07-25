@@ -13,6 +13,10 @@ const MarketsResponse = z.object({
       currency: z.string(),
       description: z.string(),
       sector: z.string(),
+      cva_percentage: z.number(),
+      initial_margin: z.number(),
+      daily_funding_percentage: z.number(),
+      max_leverage: z.number(),
     })
   ),
 })
